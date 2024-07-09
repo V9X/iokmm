@@ -37,8 +37,6 @@ NTSTATUS io_control(PDEVICE_OBJECT dev_obj, PIRP irp) {
 	
 	ULONG code = stack->Parameters.DeviceIoControl.IoControlCode;
 
-	DbgPrintEx(0, 0, "BUFFER: %p", input->buffer);
-
 	switch (code) {
 		case IO_READ: {
 			MmCopyVirtualMemory(process, input->address, PsGetCurrentProcess(), input->buffer, input->size, KernelMode, &return_size);
